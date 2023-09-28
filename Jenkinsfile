@@ -8,41 +8,36 @@ pipeline {
         }
         stage('Build') {
             steps {
-                // Build your FFL-automation project
-                {
+                script {
+                    // Build your FFL-automation project
                     sh 'mvn clean'
                 }
             }
         }
         stage('Run Tests') {
             steps {
-                // Run tests in FFL-automation project
-            //    dir('BOA-FFL-AUTOMATION-SUITE')
-                  {
-                    script {
-                        try {
-                            sh 'mvn test'
-                        } catch (Exception e) {
-                            currentBuild.result = 'FAILURE'
-                            echo "Test execution failed, but continuing..."
-                        }
+                script {
+                    try {
+                        // Run tests in FFL-automation project
+                        sh 'mvn test'
+                    } catch (Exception e) {
+                        currentBuild.result = 'FAILURE'
+                        echo "Test execution failed, but continuing..."
                     }
                 }
             }
         }
-        stage('Generate Allure Report') { 
+        stage('Generate Allure Report') {
             steps {
                 script {
-                    ws('/var/lib/jenkins/workspace/BOA-Automation-project/BOA-FFL-Automation-Suite') {
-                        // Correct the syntax for invoking the Allure report generation
-                        allure([
-                            includeProperties: false,
-                            jdk: '',
-                            properties: [],
-                            reportBuildPolicy: 'ALWAYS',
-                            results: [[path: 'allure-results']]
-                        ])
-                    }
+                    // Assuming your workspace is correct, you can directly use allure()
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'allure-results']]
+                    ])
                 }
             }
         }
