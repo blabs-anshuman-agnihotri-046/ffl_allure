@@ -38,8 +38,7 @@
                         </configuration>
                            <systemPropertyVariables>
     <allure.results.directory>../target/allure-results</allure.results.directory>
-     </systemPropertyVariables>
-                    </plugin>
+                           </systemPropertyVariables>
                 </plugins>
             </build>
         </profile>
