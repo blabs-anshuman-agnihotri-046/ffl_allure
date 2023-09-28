@@ -36,6 +36,9 @@
                         <configuration>
                             <skipTests>false</skipTests>
                         </configuration>
+                           <systemPropertyVariables>
+    <allure.results.directory>../target/allure-results</allure.results.directory>
+     </systemPropertyVariables>
                     </plugin>
                 </plugins>
             </build>
