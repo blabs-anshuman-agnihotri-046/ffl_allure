@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build your FFL-automation project
-                dir('BOA-FFL-Automation-Suite') {
+                dir('BOA-FFL-AUTOMATION-SUITE') {
                     sh 'mvn clean'
                 }
             }
@@ -17,7 +17,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 // Run tests in FFL-automation project
-                dir('BOA-FFL-Automation-Suite') {
+                dir('BOA-FFL-AUTOMATION-SUITE') {
                     script {
                         try {
                             sh 'mvn test'
